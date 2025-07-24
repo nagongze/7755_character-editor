@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-TW">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    
+    <!-- Favicon 設定 -->
+    <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>logo.svg">
+    <link rel="alternate icon" href="<%= BASE_URL %>favicon.ico">
+    
+    <!-- 網頁資訊 -->
+    <title>7755遊戲角色檔案編輯器</title>
+    <meta name="description" content="一個專為卿卿我我遊戲角色設定而設計，支援 Google Drive 雲端儲存功能。">
+    
+    <!-- Open Graph / 社群媒體縮圖 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="卿卿我我遊戲角色檔案編輯器">
+    <meta property="og:description" content="一個專為卿卿我我遊戲角色設定而設計，支援 Google Drive 雲端儲存功能。">
+    <meta property="og:image" content="<%= BASE_URL %>logo.svg">
+    <meta property="og:url" content="">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="遊戲角色檔案編輯器">
+    <meta name="twitter:description" content="一個專為卿卿我我遊戲角色設定而設計，支援 Google Drive 雲端儲存功能。">
+    <meta name="twitter:image" content="<%= BASE_URL %>logo.svg">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>logo.svg">
   </head>
   <body>
     <noscript>

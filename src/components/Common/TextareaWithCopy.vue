@@ -127,8 +127,8 @@ export default {
 
 .copy-button {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
   opacity: 0.7;
   transition: opacity 0.3s;
@@ -153,12 +153,12 @@ export default {
 
 .word-count {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 1px;
+  right: 1px;
   font-size: 12px;
   color: #909399;
   background: rgba(255, 255, 255, 0.9);
-  padding: 2px 6px;
+  padding: 2px 2px;
   border-radius: 3px;
   user-select: none;
   transition: color 0.3s;

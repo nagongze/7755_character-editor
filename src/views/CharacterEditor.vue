@@ -1,17 +1,14 @@
 <template>
   <div class="character-editor">
     <div class="container">
-      <h1>🎮 遊戲角色檔案編輯器</h1>
-      
-      <!-- Google Drive 認證 -->
-      <GoogleAuth />
-      
+      <h1>💖 7755遊戲角色檔案編輯器</h1>
+
       <!-- 檔案控制 -->
-      <FileControls v-if="isSignedIn" />
-      
+      <FileControls />
+
       <!-- 狀態訊息 -->
       <StatusMessage />
-      
+
       <!-- 角色編輯表單 -->
       <div class="character-form">
         <PersonalInfo />
@@ -20,13 +17,13 @@
         <DetailedSettings />
         <Events />
       </div>
-      
+
       <!-- 載入動畫 -->
       <LoadingSpinner v-if="loading" />
-      
+
       <div class="success-message">
         <h3>🎉 角色編輯器完全載入成功！</h3>
-        <p>所有組件都正常運行，您可以開始使用角色編輯器了。</p>        
+        <p>所有組件都正常運行，您可以開始使用角色編輯器了。</p>
         <el-button type="primary" @click="$router.push('/')">
           返回首頁
         </el-button>
@@ -38,7 +35,6 @@
 <script>
 import { computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import GoogleAuth from '@/components/GoogleDrive/GoogleAuth.vue'
 import FileControls from '@/components/GoogleDrive/FileControls.vue'
 import StatusMessage from '@/components/Common/StatusMessage.vue'
 import LoadingSpinner from '@/components/Common/LoadingSpinner.vue'
@@ -52,7 +48,6 @@ import { useGoogleAuth } from '@/composables/useGoogleAuth'
 export default {
   name: 'CharacterEditor',
   components: {
-    GoogleAuth,
     FileControls,
     StatusMessage,
     LoadingSpinner,

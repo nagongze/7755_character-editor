@@ -2,56 +2,41 @@
   <div class="file-controls">
     <div class="control-buttons">
       <!-- Google Drive 操作 -->
-      <div class="button-group">
+      <div v-if="isSignedIn" class="button-group">
         <h4>☁️ 雲端操作</h4>
-        <el-button 
-          type="success" 
-          @click="handleSave" 
-          :loading="driveLoading"
-          :disabled="!hasChanges"
-        >
+        <el-button type="success" @click="handleSave" :loading="driveLoading" :disabled="!hasChanges">
           💾 {{ currentFileId ? '儲存變更' : '儲存新檔案' }}
         </el-button>
-        
-        <el-button 
-          type="primary" 
-          @click="handleLoad" 
-          :loading="driveLoading"
-        >
+
+        <el-button type="primary" @click="handleLoad" :loading="driveLoading">
           📂 載入檔案
         </el-button>
-        
-        <el-button 
-          type="warning" 
-          @click="handleNew"
-          :disabled="driveLoading"
-        >
+
+        <el-button type="info" @click="handleNew" :disabled="driveLoading">
           ✨ 新增角色
         </el-button>
       </div>
 
-      <!-- 本地檔案操作 -->
+      <!-- Google 認證區域 (未登入時顯示) -->
+      <div v-else class="button-group">
+        <h4>☁️ 雲端操作</h4>
+        <GoogleAuth />
+      </div>
+
+      <!-- 本機檔案操作 -->
       <div class="button-group">
-        <h4>💻 本地檔案</h4>
-        <el-button 
-          type="info" 
-          @click="handleExport"
-          :loading="importExportLoading"
-          :disabled="!currentFileName"
-        >
+        <h4>💻 本機檔案</h4>
+        <el-button type="success" @click="handleExport" :loading="importExportLoading" :disabled="!currentFileName"
+          plain>
           📥 匯出到電腦
         </el-button>
-        
-        <el-button 
-          type="info" 
-          @click="handleImport"
-          :loading="importExportLoading"
-        >
+
+        <el-button type="primary" @click="handleImport" :loading="importExportLoading" plain>
           📤 從電腦匯入
         </el-button>
       </div>
     </div>
-    
+
     <div v-if="currentFileName" class="current-file">
       <span>📄 目前檔案: {{ currentFileName }}</span>
       <el-tag v-if="hasUnsavedChanges" type="warning" size="small">
@@ -69,32 +54,24 @@
     <!-- 檔案列表對話框 -->
     <el-dialog v-model="showFileList" title="載入角色檔案" width="600px">
       <div v-if="driveLoading" class="loading-container">
-        <el-icon class="is-loading"><Loading /></el-icon>
+        <el-icon class="is-loading">
+          <Loading />
+        </el-icon>
         <p>正在載入檔案列表...</p>
       </div>
-      
+
       <div v-else-if="files.length === 0" class="empty-files">
         <p>尚未有任何角色檔案</p>
         <p>建立第一個角色檔案吧！</p>
       </div>
-      
+
       <div v-else class="file-list">
-        <div 
-          v-for="file in files" 
-          :key="file.id"
-          class="file-item"
-          @click="loadSelectedFile(file.id)"
-        >
+        <div v-for="file in files" :key="file.id" class="file-item" @click="loadSelectedFile(file.id)">
           <div class="file-info">
             <h4>{{ file.name }}</h4>
             <p>修改時間: {{ file.modifiedTime }}</p>
           </div>
-          <el-button 
-            type="danger" 
-            size="small"
-            @click.stop="deleteFile(file.id)"
-            :loading="driveLoading"
-          >
+          <el-button type="danger" size="small" @click.stop="deleteFile(file.id)" :loading="driveLoading">
             🗑️
           </el-button>
         </div>
@@ -108,16 +85,20 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Loading } from '@element-plus/icons-vue'
 import { useCharacterStore } from '@/stores/character'
+import { useAuthStore } from '@/stores/auth'
 import { useGoogleDrive } from '@/composables/useGoogleDrive'
 import { useFileImportExport } from '@/composables/useFileImportExport'
+import GoogleAuth from './GoogleAuth.vue'
 
 export default {
   name: 'FileControls',
   components: {
-    Loading
+    Loading,
+    GoogleAuth
   },
   setup() {
     const characterStore = useCharacterStore()
+    const authStore = useAuthStore()
     const googleDrive = useGoogleDrive()
     const fileImportExport = useFileImportExport()
     const showFileList = ref(false)
@@ -140,6 +121,8 @@ export default {
     })
 
     // 計算屬性
+    const isSignedIn = computed(() => authStore.isSignedIn)
+    
     const currentFileName = computed(() => {
       const name = characterStore.characterName
       return name !== '未命名角色' ? `${name}.json` : null
@@ -245,6 +228,7 @@ export default {
 
     return {
       // 狀態
+      isSignedIn,
       showFileList,
       currentFileName,
       currentFileId,
@@ -396,5 +380,9 @@ export default {
   margin: 0;
   color: #909399;
   font-size: 12px;
+}
+
+.el-button+.el-button {
+  margin-left: 0px;
 }
 </style>
