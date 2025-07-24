@@ -1,6 +1,6 @@
 export const GOOGLE_CONFIG = {
   CLIENT_ID: process.env.VUE_APP_GOOGLE_CLIENT_ID,
-  SCOPES: 'https://www.googleapis.com/auth/drive'
+  SCOPES: 'https://www.googleapis.com/auth/drive.file'
 }
 
 export const CHARACTER_TEMPLATE = {

@@ -45,7 +45,7 @@ cp .env.local.example .env.local
 
 # 編輯 .env.local，設定你的 Google API 憑證
 VUE_APP_GOOGLE_CLIENT_ID=your-client-id.googleusercontent.com
-VUE_APP_GOOGLE_API_KEY=your-api-key
+
 ```
 
 4. **啟動開發伺服器**
