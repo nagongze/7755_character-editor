@@ -3,7 +3,7 @@
     <div class="section-header">
       <h2>🎬 重要事件</h2>      
     </div>
-    <el-form :model="character.events" label-width="120px">
+    <el-form :model="character.events" class="responsive-form">
       <div
         v-for="(event, index) in character.events"
         :key="index"
@@ -200,6 +200,31 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+/* 響應式 label-width */
+.responsive-form {
+  --label-width: 120px;
+}
+
+.responsive-form :deep(.el-form-item__label) {
+  width: var(--label-width) !important;
+}
+
+@media (max-width: 768px) {
+  .responsive-form {
+    --label-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-form {
+    --label-width: 80px;
+  }
+  
+  .responsive-form :deep(.el-form-item__label) {
+    font-size: 14px;
+  }
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="form-section">
     <h2>⚙️ 角色基本設定</h2>
-    <el-form :model="character.basicSettings" label-width="120px">
+    <el-form :model="character.basicSettings" class="responsive-form">
       <el-form-item label="性別">
         <el-radio-group 
           v-model="character.basicSettings.gender" 
@@ -120,5 +120,30 @@ export default {
   border-color: #409eff;
   background-color: #ecf5ff;
   color: #409eff;
+}
+
+/* 響應式 label-width */
+.responsive-form {
+  --label-width: 120px;
+}
+
+.responsive-form :deep(.el-form-item__label) {
+  width: var(--label-width) !important;
+}
+
+@media (max-width: 768px) {
+  .responsive-form {
+    --label-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-form {
+    --label-width: 80px;
+  }
+  
+  .responsive-form :deep(.el-form-item__label) {
+    font-size: 14px;
+  }
 }
 </style>

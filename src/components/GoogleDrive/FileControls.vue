@@ -295,6 +295,16 @@ export default {
   background: rgba(240, 248, 255, 0.8);
   border-radius: 10px;
   border: 2px solid #d4edda;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden; /* 防止內容溢出 */
+}
+
+@media (max-width: 480px) {
+  .file-controls {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
 }
 
 .control-buttons {
@@ -302,11 +312,19 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-bottom: 15px;
+  min-width: 0; /* 允許 grid 項目縮小 */
 }
 
 @media (max-width: 768px) {
   .control-buttons {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-buttons {
+    gap: 10px;
   }
 }
 
@@ -315,6 +333,14 @@ export default {
   border-radius: 10px;
   padding: 15px;
   border: 1px solid #e4e7ed;
+  min-width: 0; /* 允許縮小 */
+  box-sizing: border-box; /* 確保 padding 和 border 包含在寬度內 */
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    padding: 10px;
+  }
 }
 
 .button-group h4 {
@@ -330,10 +356,43 @@ export default {
 .button-group .el-button {
   width: 100%;
   margin-bottom: 8px;
+  min-width: 0; /* 允許按鈕縮小 */
+  word-break: word-break; /* 允許長文字換行 */
+  white-space: normal; /* 允許文字換行 */
+  height: auto; /* 允許按鈕高度自適應 */
+  padding: 8px 12px;
 }
 
 .button-group .el-button:last-child {
   margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .button-group .el-button {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  
+  .button-group h4 {
+    font-size: 12px;
+  }
+}
+
+/* 針對 el-row 中的按鈕（新增角色和 Markdown 匯出） */
+.file-controls .el-row .el-button {
+  min-width: 0;
+  word-break: word-break;
+  white-space: normal;
+  height: auto;
+  padding: 8px 12px;
+}
+
+@media (max-width: 480px) {
+  .file-controls .el-row .el-button {
+    font-size: 11px;
+    padding: 6px 8px;
+    line-height: 1.3;
+  }
 }
 
 .current-file {

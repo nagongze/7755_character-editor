@@ -1,7 +1,7 @@
 <template>
   <div class="form-section">
     <h2>🔍 角色詳細設定</h2>
-    <el-form :model="character.detailedSettings" label-width="120px">
+    <el-form :model="character.detailedSettings" class="responsive-form">
       <el-row :gutter="20">
         <el-col :xs=24 :span="12">
           <el-form-item label="喜歡">
@@ -224,6 +224,31 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+/* 響應式 label-width */
+.responsive-form {
+  --label-width: 120px;
+}
+
+.responsive-form :deep(.el-form-item__label) {
+  width: var(--label-width) !important;
+}
+
+@media (max-width: 768px) {
+  .responsive-form {
+    --label-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-form {
+    --label-width: 80px;
+  }
+  
+  .responsive-form :deep(.el-form-item__label) {
+    font-size: 14px;
+  }
 }
 
 </style>

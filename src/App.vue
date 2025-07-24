@@ -31,4 +31,8 @@ body {
   margin: 0.25rem;
 }
 
+.el-button {
+  word-break: word-break;
+}
+
 </style>

@@ -103,6 +103,15 @@ export default {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   border: 2px solid #e9ecef;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden; /* 防止內容溢出 */
+}
+
+@media (max-width: 480px) {
+  .auth-section {
+    padding: 15px;
+  }
 }
 
 .signed-in {
@@ -156,5 +165,31 @@ p {
 .user-email {
   font-size: 14px;
   color: #999;
+}
+
+/* 按鈕響應式設計 */
+.auth-section .el-button {
+  max-width: 100%;
+  min-width: 0;
+  word-break: word-break;
+  white-space: normal;
+  height: auto;
+  padding: 12px 20px;
+}
+
+@media (max-width: 480px) {
+  .auth-section .el-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  
+  .auth-section p {
+    font-size: 14px;
+  }
+  
+  .signed-in {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>
