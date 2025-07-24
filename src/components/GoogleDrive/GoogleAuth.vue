@@ -19,9 +19,9 @@
         size="large"
       >
         <template #icon>
-          <i class="el-icon-user"></i>
+          <el-icon><User /></el-icon>
         </template>
-        {{ !isInitialized ? '正在載入 Google API...' : '🔐 登入 Google Drive' }}
+        {{ !isInitialized ? '正在載入 Google API...' : '登入 Google Drive ' }}
       </el-button>
     </div>
     

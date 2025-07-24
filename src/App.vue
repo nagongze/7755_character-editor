@@ -26,4 +26,9 @@ body {
 #app {
   min-height: 100vh;
 }
+
+.el-icon {
+  margin: 0.25rem;
+}
+
 </style>

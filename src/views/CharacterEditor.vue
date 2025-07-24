@@ -1,10 +1,21 @@
 <template>
   <div class="character-editor">
     <div class="container">
-      <h1>💖 7755遊戲角色檔案編輯器</h1>
+      <h1>💖 7755遊戲角色檔案編輯器</h1>      
 
       <!-- 檔案控制 -->
-      <FileControls />
+      <div class="success-message">        
+        <el-button type="primary" @click="$router.push('/')" plain>
+          <el-icon><House /></el-icon> 返回首頁
+        </el-button>        
+        <FileControls />    
+        <el-button type="info" @click="scrollToDetailedSettings">
+          📋 快轉到附加資訊區
+        </el-button>
+        <el-button type="warning" @click="scrollToEvents">
+          🎬 快轉到事件區
+        </el-button>
+      </div>
 
       <!-- 狀態訊息 -->
       <StatusMessage />
@@ -14,26 +25,30 @@
         <PersonalInfo />
         <BasicSettings />
         <FirstChat />
-        <DetailedSettings />
-        <Events />
+        <DetailedSettings ref="detailedSettingsRef" />
+        <Events ref="eventsRef" />
       </div>
 
       <!-- 載入動畫 -->
       <LoadingSpinner v-if="loading" />
 
-      <div class="success-message">
-        <h3>🎉 角色編輯器完全載入成功！</h3>
-        <p>所有組件都正常運行，您可以開始使用角色編輯器了。</p>
-        <el-button type="primary" @click="$router.push('/')">
-          返回首頁
+      <div class="success-message">        
+        <FileControls />       
+        <el-button type="info" @click="scrollToTop" plain>
+          🔝 回到頂端
         </el-button>
+        <el-button type="primary" @click="$router.push('/')" plain>
+          <el-icon><House /></el-icon>返回首頁
+        </el-button>
+        
+            
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import FileControls from '@/components/GoogleDrive/FileControls.vue'
 import StatusMessage from '@/components/Common/StatusMessage.vue'
@@ -73,10 +88,43 @@ export default {
       }
     }
 
+    const detailedSettingsRef = ref(null)
+    const eventsRef = ref(null)
+
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+
+    const scrollToDetailedSettings = () => {
+      if (detailedSettingsRef.value) {
+        detailedSettingsRef.value.$el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+
+    const scrollToEvents = () => {
+      if (eventsRef.value) {
+        eventsRef.value.$el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+
     return {
       isSignedIn,
       loading,
-      testLogin
+      testLogin,
+      detailedSettingsRef,
+      eventsRef,
+      scrollToTop,
+      scrollToDetailedSettings,
+      scrollToEvents
     }
   }
 }
@@ -131,6 +179,6 @@ h1 {
 }
 
 .success-message .el-button {
-  margin: 0 10px;
+  margin-bottom: 20px;
 }
 </style>

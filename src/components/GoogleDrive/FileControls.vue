@@ -3,40 +3,47 @@
     <div class="control-buttons">
       <!-- Google Drive 操作 -->
       <div v-if="isSignedIn" class="button-group">
-        <h4>☁️ 雲端操作</h4>
+        <h4><el-icon><MostlyCloudy /></el-icon> 雲端操作</h4>
         <el-button type="success" @click="handleSave" :loading="driveLoading" :disabled="!hasChanges">
-          💾 {{ currentFileId ? '儲存變更' : '儲存新檔案' }}
+          <el-icon><UploadFilled /></el-icon> {{ currentFileId ? '儲存變更' : '儲存新檔案' }}
         </el-button>
 
         <el-button type="primary" @click="handleLoad" :loading="driveLoading">
-          📂 載入檔案
-        </el-button>
-
-        <el-button type="info" @click="handleNew" :disabled="driveLoading">
-          ✨ 新增角色
-        </el-button>
+          <el-icon><Download /></el-icon> 載入檔案
+        </el-button>        
       </div>
 
       <!-- Google 認證區域 (未登入時顯示) -->
       <div v-else class="button-group">
-        <h4>☁️ 雲端操作</h4>
+        <h4><el-icon><MostlyCloudy /></el-icon> 雲端操作</h4>
         <GoogleAuth />
       </div>
 
       <!-- 本機檔案操作 -->
       <div class="button-group">
-        <h4>💻 本機檔案</h4>
+        <h4><el-icon><Platform /></el-icon> 本機檔案</h4>
         <el-button type="success" @click="handleExport" :loading="importExportLoading" :disabled="!currentFileName"
           plain>
-          📥 匯出到電腦
+          <el-icon><Upload /></el-icon> 匯出到電腦
         </el-button>
-
         <el-button type="primary" @click="handleImport" :loading="importExportLoading" plain>
-          📤 從電腦匯入
+          <el-icon><FolderOpened /></el-icon> 從電腦匯入
         </el-button>
       </div>
     </div>
-
+    <el-row  gutter="5">
+        <el-col :xs="24" :span="12">
+          <el-button type="danger" @click="handleNew" :disabled="driveLoading" plain style="font-weight: bold; width: 100%;">
+            <el-icon><Plus /></el-icon> 新增角色
+          </el-button>
+        </el-col>
+        <el-col :xs="24" :span="12">
+          <el-button type="info" @click="handleMarkdownExport" :loading="markdownExportLoading" :disabled="!currentFileName" plain style="font-weight: bold; width: 100%;">
+            <el-icon><Promotion /></el-icon> 匯出為Markdown（無法匯入，僅供閱讀）
+          </el-button>
+        </el-col>        
+    </el-row>
+    
     <div v-if="currentFileName" class="current-file">
       <span>📄 目前檔案: {{ currentFileName }}</span>
       <el-tag v-if="hasUnsavedChanges" type="warning" size="small">
@@ -52,7 +59,7 @@
     </div>
 
     <!-- 檔案列表對話框 -->
-    <el-dialog v-model="showFileList" title="載入角色檔案" width="600px">
+    <el-dialog v-model="showFileList" title="載入角色檔案" width="95%">
       <div v-if="driveLoading" class="loading-container">
         <el-icon class="is-loading">
           <Loading />
@@ -71,8 +78,8 @@
             <h4>{{ file.name }}</h4>
             <p>修改時間: {{ file.modifiedTime }}</p>
           </div>
-          <el-button type="danger" size="small" @click.stop="deleteFile(file.id)" :loading="driveLoading">
-            🗑️
+          <el-button type="danger" @click.stop="deleteFile(file.id)" :loading="driveLoading" :icon="Delete" circle>
+            <el-icon><Delete /></el-icon>
           </el-button>
         </div>
       </div>
@@ -88,6 +95,7 @@ import { useCharacterStore } from '@/stores/character'
 import { useAuthStore } from '@/stores/auth'
 import { useGoogleDrive } from '@/composables/useGoogleDrive'
 import { useFileImportExport } from '@/composables/useFileImportExport'
+import { useMarkdownExport } from '@/composables/useMarkdownExport'
 import GoogleAuth from './GoogleAuth.vue'
 
 export default {
@@ -101,6 +109,7 @@ export default {
     const authStore = useAuthStore()
     const googleDrive = useGoogleDrive()
     const fileImportExport = useFileImportExport()
+    const markdownExport = useMarkdownExport()
     const showFileList = ref(false)
     
     // 監聽 Google token 事件
@@ -140,6 +149,7 @@ export default {
     const driveLoading = computed(() => googleDrive.isLoading.value)
     const driveError = computed(() => googleDrive.error.value)
     const importExportLoading = computed(() => fileImportExport.isProcessing.value)
+    const markdownExportLoading = computed(() => markdownExport.isProcessing.value)
 
     // 處理存檔
     const handleSave = async () => {
@@ -193,10 +203,29 @@ export default {
     }
 
     // 處理新增檔案
-    const handleNew = () => {
-      const success = googleDrive.newCharacter()
-      if (success) {
-        ElMessage.info('已建立新的角色檔案')
+    const handleNew = async () => {
+      try {
+        if (hasUnsavedChanges.value) {
+          await ElMessageBox.confirm(
+            '目前有未儲存的變更，確定要建立新角色嗎？未儲存的變更將會遺失。',
+            '確認建立新角色',
+            {
+              confirmButtonText: '確定建立',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          )
+        }
+
+        const success = googleDrive.newCharacter()
+        if (success) {
+          ElMessage.info('已建立新的角色檔案')
+        }
+      } catch (error) {
+        // 使用者取消操作時不顯示錯誤訊息
+        if (error !== 'cancel') {
+          ElMessage.error('建立新角色失敗: ' + error.message)
+        }
       }
     }
 
@@ -226,6 +255,11 @@ export default {
       }
     }
 
+    // 匯出為 Markdown
+    const handleMarkdownExport = () => {
+      markdownExport.exportToMarkdown()
+    }
+
     return {
       // 狀態
       isSignedIn,
@@ -238,6 +272,7 @@ export default {
       driveLoading,
       driveError,
       importExportLoading,
+      markdownExportLoading,
       
       // 方法
       handleSave,
@@ -246,7 +281,8 @@ export default {
       loadSelectedFile,
       deleteFile,
       handleExport,
-      handleImport
+      handleImport,
+      handleMarkdownExport
     }
   }
 }
@@ -374,6 +410,9 @@ export default {
   margin: 0 0 5px 0;
   color: #303133;
   font-size: 16px;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 3px solid #409eff;
 }
 
 .file-info p {

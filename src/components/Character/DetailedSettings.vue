@@ -3,7 +3,7 @@
     <h2>🔍 角色詳細設定</h2>
     <el-form :model="character.detailedSettings" label-width="120px">
       <el-row :gutter="20">
-        <el-col :span="12">
+        <el-col :xs=24 :span="12">
           <el-form-item label="喜歡">
             <TextareaWithCopy
               v-model="character.detailedSettings.likes"
@@ -14,7 +14,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :xs=24 :span="12">
           <el-form-item label="不喜歡">
             <TextareaWithCopy
               v-model="character.detailedSettings.dislikes"
@@ -28,19 +28,27 @@
       </el-row>
       
       <div class="additional-settings">
-        <h3>📋 附加資訊</h3>
+        <div class="section-header">
+          <h3>📋 附加資訊</h3>      
+        </div>
         <div
           v-for="(item, index) in character.detailedSettings.additional"
           :key="index"
           class="additional-item"
         >
+          <div class="additional-header">
+            <h4>{{ `附加資訊 ${index + 1}` }}</h4>
+            <el-button 
+              type="danger" 
+              circle
+              @click="removeAdditionalInfo(index)"
+              :disabled="character.detailedSettings.additional.length <= 1"
+            >
+              <el-icon><Delete /></el-icon>
+            </el-button>
+          </div>
           <el-row :gutter="20">
-            <el-col :span="24">
-              <h4>{{ `附加資訊 ${index + 1}` }}</h4>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
+            <el-col>
               <el-form-item :label="`標題`">
                 <TextareaWithCopy
                   v-model="item.title"
@@ -51,7 +59,9 @@
                 />
               </el-form-item>
             </el-col>
-            <el-col :span="16">
+          </el-row>
+          <el-row :gutter="20">
+            <el-col>
               <el-form-item :label="`內容`">
                 <TextareaWithCopy
                   v-model="item.content"
@@ -64,6 +74,17 @@
             </el-col>
           </el-row>
         </div>
+        <div class="section-footer">
+          <el-button 
+            type="primary" 
+            @click="addAdditionalInfo"
+            :disabled="character.detailedSettings.additional.length >= 10"
+            style="width: 80%;"
+          >
+            <el-icon><Plus /></el-icon>
+            新增附加資訊
+          </el-button>
+        </div>
       </div>
     </el-form>
   </div>
@@ -72,12 +93,16 @@
 <script>
 import { computed } from 'vue'
 import { useCharacterStore } from '@/stores/character'
+import { ElMessage } from 'element-plus'
+import { Plus, Delete } from '@element-plus/icons-vue'
 import TextareaWithCopy from '@/components/Common/TextareaWithCopy.vue'
 
 export default {
   name: 'DetailedSettings',
   components: {
-    TextareaWithCopy
+    TextareaWithCopy,
+    Plus,
+    Delete
   },
   setup() {
     const characterStore = useCharacterStore()
@@ -88,9 +113,36 @@ export default {
       characterStore.markAsDirty()
     }
 
+    const addAdditionalInfo = () => {
+      if (character.value.detailedSettings.additional.length >= 10) {
+        ElMessage.warning('附加資訊最多只能有 10 筆')
+        return
+      }
+      
+      character.value.detailedSettings.additional.push({
+        title: '',
+        content: ''
+      })
+      updateCharacter()
+      ElMessage.success('已新增附加資訊')
+    }
+
+    const removeAdditionalInfo = (index) => {
+      if (character.value.detailedSettings.additional.length <= 1) {
+        ElMessage.warning('至少需要保留一筆附加資訊')
+        return
+      }
+      
+      character.value.detailedSettings.additional.splice(index, 1)
+      updateCharacter()
+      ElMessage.success('已刪除附加資訊')
+    }
+
     return {
       character,
-      updateCharacter
+      updateCharacter,
+      addAdditionalInfo,
+      removeAdditionalInfo
     }
   }
 }
@@ -144,6 +196,34 @@ export default {
 
 .additional-item h4::before {
   content: "📋";
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h3 {
+  margin: 0;
+}
+
+.additional-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.additional-header h4 {
+  margin: 0;
+}
+
+.section-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 </style>

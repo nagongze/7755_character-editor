@@ -3,7 +3,7 @@
     <h2>👤 個人資料</h2>
     <el-form :model="character.personalInfo" label-width="125px">
       <el-row :gutter="20">
-        <el-col :span="8">
+        <el-col :xs=24 :sm=24 :lg="8">
           <el-form-item label="姓名">
             <TextareaWithCopy
               v-model="character.personalInfo.name"
@@ -14,7 +14,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="8">
+        <el-col :xs=24 :sm=10 :lg="8">
           <el-form-item label="年齡">
             <TextareaWithCopy
               v-model="character.personalInfo.age"
@@ -25,7 +25,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="8">
+        <el-col :xs=24 :sm=14 :lg="8">
           <el-form-item label="職業">
             <TextareaWithCopy
               v-model="character.personalInfo.profession"

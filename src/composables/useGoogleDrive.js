@@ -73,11 +73,6 @@ export function useGoogleDrive() {
    * 建立新角色檔案
    */
   const newCharacter = () => {
-    if (characterStore.hasUnsavedChanges) {
-      const confirmed = confirm('目前有未儲存的變更，確定要建立新檔案嗎？')
-      if (!confirmed) return false
-    }
-
     characterStore.resetCharacter()
     console.log('建立新角色檔案')
     return true
