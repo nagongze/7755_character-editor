@@ -139,6 +139,45 @@ $mobile: 480px;
 }
 
 // ===== 共用類別 =====
+
+// Dialog 響應式寬度設定
+.el-overlay .el-overlay-dialog .el-dialog {
+  @media (max-width: $tablet) {
+    --el-dialog-width: 90% !important;;
+    width: 90% !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  @media (max-width: $mobile) {
+    --el-dialog-width: 95% !important;;
+    width: 95% !important;
+    max-width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+// 備用選擇器
+.el-dialog {
+  @media (max-width: $tablet) {
+    --el-dialog-width: 90% !important;
+    width: 90% !important;
+    max-width: 90% !important;
+  }
+  
+  @media (max-width: $mobile) {
+    --el-dialog-width: 95% !important;
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}
+
+.el-input-tag {
+  border-radius: 0px;
+}
+
 .logo {
   width: 1.2em;
   height: 1.2em;
@@ -146,26 +185,10 @@ $mobile: 480px;
 }
 
 .responsive-form {
-  --label-width: 120px;
-
-  :deep(.el-form-item__label) {
-    width: var(--label-width) !important;
-  }
-
-  @media (max-width: $tablet) {
-    --label-width: 100px;
-  }
-
-  @media (max-width: $mobile) {
-    --label-width: 80px;
-    
+  @media (max-width: $mobile) {        
     :deep(.el-form-item__label) {
       font-size: 14px;
     }
-  }
-
-  &.responsive-form--personal {
-    --label-width: 125px;
   }
 }
 

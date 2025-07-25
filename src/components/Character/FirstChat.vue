@@ -1,12 +1,12 @@
 <template>
   <div class="form-section">
     <h2>💬 第一次聊天場景</h2>
-    <el-form :model="character.firstChat" class="responsive-form">
+    <el-form :model="character.firstChat" class="responsive-form" label-position="top">
       <el-form-item label="情境腳本">
         <TextareaWithCopy
           v-model="character.firstChat.scenario"
           placeholder="描述第一次對話的場景背景"
-          :rows="4"
+          :rows="5"
           :max-length="800"
           @input="updateCharacter"
         />

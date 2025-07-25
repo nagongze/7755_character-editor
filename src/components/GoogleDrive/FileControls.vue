@@ -59,7 +59,12 @@
     </div>
 
     <!-- 檔案列表對話框 -->
-    <el-dialog v-model="showFileList" title="載入角色檔案" width="95%">
+    <el-dialog 
+      v-model="showFileList" 
+      title="載入角色檔案" 
+      top="5vh" 
+      :style="dialogStyle" 
+      append-to-body>
       <div v-if="driveLoading" class="loading-container">
         <el-icon class="is-loading">
           <Loading />
@@ -78,7 +83,7 @@
             <h4>{{ file.name }}</h4>
             <p>修改時間: {{ file.modifiedTime }}</p>
           </div>
-          <el-button type="danger" @click.stop="deleteFile(file.id)" :loading="driveLoading" :icon="Delete" circle>
+          <el-button type="danger" @click.stop="deleteFile(file.id)" :loading="driveLoading" circle>
             <el-icon><Delete /></el-icon>
           </el-button>
         </div>
@@ -89,6 +94,7 @@
 
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useWindowSize } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { 
   Loading, 
@@ -131,6 +137,7 @@ export default {
     const fileImportExport = useFileImportExport()
     const markdownExport = useMarkdownExport()
     const showFileList = ref(false)
+    const { width } = useWindowSize()
     
     // 監聽 Google token 事件
     const handleTokenReady = (event) => {
@@ -185,6 +192,20 @@ export default {
         ElMessage.error('儲存失敗: ' + error.message)
       }
     }
+
+    // 響應式 dialog 樣式
+    const dialogStyle = computed(() => {
+      const baseStyle = { maxHeight: '80vh' }
+      
+      // 使用 @vueuse/core 的響應式寬度
+      if (width.value <= 480) {
+        return { ...baseStyle, '--el-dialog-width': '95%', width: '95%' }
+      } else if (width.value <= 768) {
+        return { ...baseStyle, '--el-dialog-width': '90%', width: '90%' }
+      } else {
+        return { ...baseStyle, '--el-dialog-width': '50%', width: '50%' }
+      }
+    })
 
     // 處理載入檔案列表
     const handleLoad = async () => {
@@ -293,6 +314,7 @@ export default {
       driveError,
       importExportLoading,
       markdownExportLoading,
+      dialogStyle,
       
       // 方法
       handleSave,
@@ -460,7 +482,7 @@ export default {
 }
 
 .file-list {
-  max-height: 400px;
+  max-height: 60vh;
   overflow-y: auto;
 }
 
@@ -503,4 +525,6 @@ export default {
 .el-button+.el-button {
   margin-left: 0px;
 }
+
+/* 移除不必要的 CSS，改用 JavaScript 動態設定 */
 </style>

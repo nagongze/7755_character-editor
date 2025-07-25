@@ -1,70 +1,45 @@
 <template>
   <div class="form-section">
     <div class="section-header">
-      <h2>🎬 重要事件</h2>      
+      <h2>🎬 重要事件</h2>
     </div>
-    <el-form :model="character.events" class="responsive-form">
-      <div
-        v-for="(event, index) in character.events"
-        :key="index"
-        class="event-item"
-      >
+    <el-form :model="character.events" class="responsive-form" label-position="top">
+      <div v-for="(event, index) in character.events" :key="index" class="event-item">
         <div class="event-header">
           <h3>事件 {{ index + 1 }}</h3>
-          <el-button 
-            type="danger" 
-            circle
-            @click="removeEvent(index)"
-            :disabled="character.events.length <= 1"
-          >
-          <el-icon><Delete /></el-icon>
+          <el-button type="danger" circle @click="removeEvent(index)" :disabled="character.events.length <= 1">
+            <el-icon>
+              <Delete />
+            </el-icon>
           </el-button>
         </div>
         <el-row :gutter="20">
           <el-col :xs="24" :lg="12">
+            <el-form-item label="🕒時間和地點">
+              <TextareaWithCopy v-model="event.timeAndPlace" placeholder="事件發生的時間與地點" :rows="1" :max-length="30"
+                @input="updateCharacter" />
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :lg="12">
             <el-form-item label="事件標題">
-              <TextareaWithCopy
-                v-model="event.title"
-                placeholder="事件的標題"
-                :rows="1"
-                :max-length="30"
-                @input="updateCharacter"
-              />
+              <TextareaWithCopy v-model="event.title" placeholder="事件的標題" :rows="1" :max-length="30"
+                @input="updateCharacter" />
             </el-form-item>
           </el-col>
-          <el-col :xs="24"  :lg="12">
-            <el-form-item label="時間與地點">
-              <TextareaWithCopy
-                v-model="event.timeAndPlace"
-                placeholder="事件發生的時間與地點"
-                :rows="1"
-                :max-length="30"
-                @input="updateCharacter"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>        
+        </el-row>
         <el-form-item label="事件內容">
-          <TextareaWithCopy
-            v-model="event.content"
-            placeholder="詳細描述這個重要事件"
-            :rows="4"
-            :max-length="2000"
-            @input="updateCharacter"
-          />
+          <TextareaWithCopy v-model="event.content" placeholder="詳細描述這個重要事件" :rows="7" :max-length="2000"
+            @input="updateCharacter" />
         </el-form-item>
       </div>
     </el-form>
     <div class="section-footer">
-      <el-button 
-        type="warning" 
-        @click="addEvent"
-        :disabled="character.events.length >= 20"
-        style="width: 80%; "
-      >
-        <el-icon><Plus /></el-icon>
+      <el-button type="warning" @click="addEvent" :disabled="character.events.length >= 20" style="width: 80%; ">
+        <el-icon>
+          <Plus />
+        </el-icon>
         新增事件
-    </el-button>
+      </el-button>
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@
     />
     <el-button
       v-if="modelValue && modelValue.trim()"
-      type="info"
+      type="primary"
       class="copy-button"
       @click="copyToClipboard"
       :loading="copying"
@@ -133,9 +133,9 @@ export default {
   opacity: 0.7;
   transition: opacity 0.3s;
   min-width: 32px;
-  height: 28px;
+  height: 31px;
   padding: 0;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 .copy-button:hover {
@@ -144,28 +144,33 @@ export default {
 
 .textarea-input {
   width: 100%;
+  padding-right: 31px; /* 為了留出複製按鈕的空間 */
+  padding-bottom: 28px; /* 為了留出字數統計的空間 */
+  border-radius: 0px;
 }
 
 .textarea-input :deep(.el-textarea__inner) {
-  padding-right: 45px;
-  padding-bottom: 30px;
+  border-radius: 0px;
 }
 
 .word-count {
   position: absolute;
-  bottom: 1px;
-  right: 1px;
+  bottom: 0px;
+  right: 5px;
   font-size: 12px;
   color: #909399;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2px 2px;
-  border-radius: 3px;
+  padding: 2px 10px;
   user-select: none;
   transition: color 0.3s;
+}
+
+.word-count span{
+  padding: 0px;
 }
 
 .word-count.over-limit {
   color: #f56c6c;
   background: rgba(245, 108, 108, 0.1);
 }
+
 </style>

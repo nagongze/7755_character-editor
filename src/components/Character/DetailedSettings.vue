@@ -1,87 +1,59 @@
 <template>
   <div class="form-section">
     <h2>🔍 角色詳細設定</h2>
-    <el-form :model="character.detailedSettings" class="responsive-form">
+    <el-form :model="character.detailedSettings" class="responsive-form" label-position="top">
       <el-row :gutter="20">
         <el-col :xs=24 :span="12">
           <el-form-item label="喜歡">
-            <TextareaWithCopy
-              v-model="character.detailedSettings.likes"
-              placeholder="角色喜歡的事物"
-              :rows="4"
-              :max-length="50"
-              @input="updateCharacter"
-            />
+            <TextareaWithCopy v-model="character.detailedSettings.likes" placeholder="角色喜歡的事物" :rows="3"
+              :max-length="50" @input="updateCharacter" />
           </el-form-item>
         </el-col>
         <el-col :xs=24 :span="12">
           <el-form-item label="不喜歡">
-            <TextareaWithCopy
-              v-model="character.detailedSettings.dislikes"
-              placeholder="角色討厭的事物"
-              :rows="4"
-              :max-length="50"
-              @input="updateCharacter"
-            />
+            <TextareaWithCopy v-model="character.detailedSettings.dislikes" placeholder="角色討厭的事物" :rows="3"
+              :max-length="50" @input="updateCharacter" />
           </el-form-item>
         </el-col>
       </el-row>
-      
+
       <div class="additional-settings">
         <div class="section-header">
-          <h3>📋 附加資訊</h3>      
+          <h3>📋 附加資訊</h3>
         </div>
-        <div
-          v-for="(item, index) in character.detailedSettings.additional"
-          :key="index"
-          class="additional-item"
-        >
+        <div v-for="(item, index) in character.detailedSettings.additional" :key="index" class="additional-item">
           <div class="additional-header">
             <h4>{{ `附加資訊 ${index + 1}` }}</h4>
-            <el-button 
-              type="danger" 
-              circle
-              @click="removeAdditionalInfo(index)"
-              :disabled="character.detailedSettings.additional.length <= 1"
-            >
-              <el-icon><Delete /></el-icon>
+            <el-button type="danger" circle @click="removeAdditionalInfo(index)"
+              :disabled="character.detailedSettings.additional.length <= 1">
+              <el-icon>
+                <Delete />
+              </el-icon>
             </el-button>
           </div>
           <el-row :gutter="20">
             <el-col>
               <el-form-item :label="`標題`">
-                <TextareaWithCopy
-                  v-model="item.title"
-                  placeholder="附加資訊標題"
-                  :rows="1"
-                  :max-length="30"
-                  @input="updateCharacter"
-                />
+                <TextareaWithCopy v-model="item.title" placeholder="附加資訊標題" :rows="1" :max-length="30"
+                  @input="updateCharacter" />
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col>
               <el-form-item :label="`內容`">
-                <TextareaWithCopy
-                  v-model="item.content"
-                  placeholder="附加資訊內容"
-                  :rows="3"
-                  :max-length="500"
-                  @input="updateCharacter"
-                />
+                <TextareaWithCopy v-model="item.content" placeholder="附加資訊內容" :rows="4" :max-length="500"
+                  @input="updateCharacter" />
               </el-form-item>
             </el-col>
           </el-row>
         </div>
         <div class="section-footer">
-          <el-button 
-            type="primary" 
-            @click="addAdditionalInfo"
-            :disabled="character.detailedSettings.additional.length >= 10"
-            style="width: 80%;"
-          >
-            <el-icon><Plus /></el-icon>
+          <el-button type="primary" @click="addAdditionalInfo"
+            :disabled="character.detailedSettings.additional.length >= 10" style="width: 80%;">
+            <el-icon>
+              <Plus />
+            </el-icon>
             新增附加資訊
           </el-button>
         </div>
