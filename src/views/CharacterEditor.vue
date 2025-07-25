@@ -2,7 +2,7 @@
   <div class="character-editor">
     <div class="container">
       <div class="header">
-        <h1><img src="/logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
+        <h1><img src="./logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
         <div class="relate-link-group">
           <el-button type="text" class="personal-site-btn" @click="openPersonalSite" circle>
             <el-icon>

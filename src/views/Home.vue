@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
-      <h1><img src="/logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
+      <h1><img src="./logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
       <p class="description">
         一個專為卿卿我我角色設定而設計的編輯工具
         <br />支援 Google Drive 雲端儲存
