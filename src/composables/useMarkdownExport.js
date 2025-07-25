@@ -7,6 +7,14 @@ export function useMarkdownExport() {
   const isProcessing = ref(false)
 
   /**
+   * 將文字轉換為區塊引言格式，處理多行文字
+   */
+  const formatAsBlockquote = (text) => {
+    if (!text) return ''
+    return text.split('\n').map(line => `> ${line}`).join('\n')
+  }
+
+  /**
    * 將角色資料轉換為 Markdown 格式
    */
   const convertToMarkdown = (character) => {
@@ -23,27 +31,27 @@ export function useMarkdownExport() {
     markdown += `## 👤 個人資訊\n\n`
     
     if (character.personalInfo.name) {
-      markdown += `**角色姓名：** ${character.personalInfo.name}\n\n`
+      markdown += `**角色姓名：**\n${formatAsBlockquote(character.personalInfo.name)}\n\n`
     }
     
     if (character.personalInfo.age) {
-      markdown += `**年齡：** ${character.personalInfo.age}\n\n`
+      markdown += `**年齡：**\n${formatAsBlockquote(character.personalInfo.age)}\n\n`
     }
     
     if (character.personalInfo.profession) {
-      markdown += `**職業：** ${character.personalInfo.profession}\n\n`
+      markdown += `**職業：**\n${formatAsBlockquote(character.personalInfo.profession)}\n\n`
     }
     
     if (character.personalInfo.quote) {
-      markdown += `**角色名言：**\n> ${character.personalInfo.quote}\n\n`
+      markdown += `**角色名言：**\n${formatAsBlockquote(character.personalInfo.quote)}\n\n`
     }
     
     if (character.personalInfo.description) {
-      markdown += `**角色描述：**\n${character.personalInfo.description}\n\n`
+      markdown += `**角色描述：**\n${formatAsBlockquote(character.personalInfo.description)}\n\n`
     }
     
     if (character.personalInfo.tags && character.personalInfo.tags.length > 0) {
-      markdown += `**標籤：** ${character.personalInfo.tags.join(', ')}\n\n`
+      markdown += `**標籤：**\n${formatAsBlockquote(character.personalInfo.tags.join(', '))}\n\n`
     }
 
     markdown += `---\n\n`
@@ -52,19 +60,19 @@ export function useMarkdownExport() {
     markdown += `## ⚙️ 基本設定\n\n`
     
     if (character.basicSettings.gender) {
-      markdown += `**性別：** ${character.basicSettings.gender}\n\n`
+      markdown += `**性別：**\n${formatAsBlockquote(character.basicSettings.gender)}\n\n`
     }
     
     if (character.basicSettings.basicInfo) {
-      markdown += `**基本資訊：**\n${character.basicSettings.basicInfo}\n\n`
+      markdown += `**基本資訊：**\n${formatAsBlockquote(character.basicSettings.basicInfo)}\n\n`
     }
     
     if (character.basicSettings.personality) {
-      markdown += `**性格特徵：**\n${character.basicSettings.personality}\n\n`
+      markdown += `**性格特徵：**\n${formatAsBlockquote(character.basicSettings.personality)}\n\n`
     }
     
     if (character.basicSettings.speakingStyle) {
-      markdown += `**說話風格：**\n${character.basicSettings.speakingStyle}\n\n`
+      markdown += `**說話風格：**\n${formatAsBlockquote(character.basicSettings.speakingStyle)}\n\n`
     }
 
     markdown += `---\n\n`
@@ -73,11 +81,11 @@ export function useMarkdownExport() {
     markdown += `## 💬 首次對話\n\n`
     
     if (character.firstChat.scenario) {
-      markdown += `**對話情境：**\n${character.firstChat.scenario}\n\n`
+      markdown += `**對話情境：**\n${formatAsBlockquote(character.firstChat.scenario)}\n\n`
     }
     
     if (character.firstChat.dialogue) {
-      markdown += `**開場白：**\n${character.firstChat.dialogue}\n\n`
+      markdown += `**開場白：**\n${formatAsBlockquote(character.firstChat.dialogue)}\n\n`
     }
 
     markdown += `---\n\n`
@@ -86,11 +94,11 @@ export function useMarkdownExport() {
     markdown += `## 🔍 角色詳細設定\n\n`
     
     if (character.detailedSettings.likes) {
-      markdown += `**喜歡：**\n${character.detailedSettings.likes}\n\n`
+      markdown += `**喜歡：**\n${formatAsBlockquote(character.detailedSettings.likes)}\n\n`
     }
     
     if (character.detailedSettings.dislikes) {
-      markdown += `**不喜歡：**\n${character.detailedSettings.dislikes}\n\n`
+      markdown += `**不喜歡：**\n${formatAsBlockquote(character.detailedSettings.dislikes)}\n\n`
     }
 
     // 附加資訊
@@ -102,11 +110,11 @@ export function useMarkdownExport() {
           markdown += `#### 附加資訊 ${index + 1}\n\n`
           
           if (item.title) {
-            markdown += `**標題：** ${item.title}\n\n`
+            markdown += `**標題：**\n${formatAsBlockquote(item.title)}\n\n`
           }
           
           if (item.content) {
-            markdown += `**內容：**\n${item.content}\n\n`
+            markdown += `**內容：**\n${formatAsBlockquote(item.content)}\n\n`
           }
         }
       })
@@ -123,15 +131,15 @@ export function useMarkdownExport() {
           markdown += `### 🎭 事件 ${index + 1}\n\n`
           
           if (event.title) {
-            markdown += `**事件標題：** ${event.title}\n\n`
+            markdown += `**事件標題：**\n${formatAsBlockquote(event.title)}\n\n`
           }
           
           if (event.timeAndPlace) {
-            markdown += `**時間與地點：** ${event.timeAndPlace}\n\n`
+            markdown += `**時間與地點：**\n${formatAsBlockquote(event.timeAndPlace)}\n\n`
           }
           
           if (event.content) {
-            markdown += `**事件內容：**\n${event.content}\n\n`
+            markdown += `**事件內容：**\n${formatAsBlockquote(event.content)}\n\n`
           }
           
           markdown += `---\n\n`
