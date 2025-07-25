@@ -5,8 +5,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  // GitHub Pages 部署設定
-  publicPath: '/character-editor/' ,
+  publicPath: process.env.NODE_ENV === 'production' ? '/character-editor/' : '/',
   devServer: {
     https: true,
     port: 8080,
@@ -15,7 +14,7 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `@import "~@/assets/styles/common.scss";`
+        additionalData: `@use "sass:math"; @use "~@/assets/styles/common.scss" as *;`
       }
     }
   },
@@ -34,25 +33,6 @@ module.exports = defineConfig({
       Components({
         resolvers: [ElementPlusResolver()],
       }),
-    ],
-    // 優化分塊策略
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            priority: 10,
-            chunks: 'initial'
-          },
-          elementPlus: {
-            name: 'element-plus',
-            priority: 20,
-            test: /[\\/]node_modules[\\/]element-plus[\\/]/
-          }
-        }
-      }
-    }
+    ]
   }
 })
