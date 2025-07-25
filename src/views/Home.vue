@@ -51,11 +51,13 @@
 
 <script>
 import GitHubIcon from '@/components/Common/GitHubIcon.vue'
+import { Flag } from '@element-plus/icons-vue'
 
 export default {
   name: 'HomeView',
   components: {
-    GitHubIcon
+    GitHubIcon,
+    Flag
   },
   methods: {
     openPersonalSite() {

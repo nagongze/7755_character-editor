@@ -45,11 +45,15 @@
 <script>
 import { computed } from 'vue'
 import { ElMessage } from 'element-plus'
+import { User } from '@element-plus/icons-vue'
 import { useAuthStore } from '@/stores/auth'
 import { useGoogleAuth } from '@/composables/useGoogleAuth'
 
 export default {
   name: 'GoogleAuth',
+  components: {
+    User
+  },
   setup() {
     const authStore = useAuthStore()
     const { isSignedIn, isInitialized, error, currentUser, signIn, signOut } = useGoogleAuth()

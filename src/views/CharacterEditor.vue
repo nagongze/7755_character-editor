@@ -15,9 +15,9 @@
             </i>
           </el-button>
           <el-button type="text" class="report-btn" @click="openReportPage" circle>
-            <i class="el-icon">
+            <el-icon>
               <Flag />
-            </i>
+            </el-icon>
           </el-button>
         </div>
       </div>
@@ -83,6 +83,7 @@ import Events from '@/components/Character/Events.vue'
 import { useGoogleAuth } from '@/composables/useGoogleAuth'
 import GitHubIcon from '@/components/Common/GitHubIcon.vue'
 import AiChatIcon from '@/components/Common/AiChatIcon.vue'
+import { Flag, House } from '@element-plus/icons-vue'
 
 export default {
   name: 'CharacterEditor',
@@ -96,7 +97,9 @@ export default {
     DetailedSettings,
     Events,
     GitHubIcon,
-    AiChatIcon
+    AiChatIcon,
+    Flag,
+    House
   },
   methods: {
     openPersonalSite() {
@@ -211,11 +214,11 @@ h1 {
 }
 
 .github-btn {
-  @include btn-github;
+  background: rgba(51, 51, 51, 0.9);
 }
 
 .report-btn {  
-  @include btn-report;
+  background: rgba(200, 51, 51, 0.9);
 }
 
 .personal-site-btn {

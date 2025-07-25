@@ -90,7 +90,18 @@
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Loading } from '@element-plus/icons-vue'
+import { 
+  Loading, 
+  MostlyCloudy, 
+  UploadFilled, 
+  Download, 
+  Platform, 
+  Upload, 
+  FolderOpened, 
+  Plus, 
+  Promotion, 
+  Delete 
+} from '@element-plus/icons-vue'
 import { useCharacterStore } from '@/stores/character'
 import { useAuthStore } from '@/stores/auth'
 import { useGoogleDrive } from '@/composables/useGoogleDrive'
@@ -102,6 +113,15 @@ export default {
   name: 'FileControls',
   components: {
     Loading,
+    MostlyCloudy,
+    UploadFilled,
+    Download,
+    Platform,
+    Upload,
+    FolderOpened,
+    Plus,
+    Promotion,
+    Delete,
     GoogleAuth
   },
   setup() {
