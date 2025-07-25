@@ -1,0 +1,351 @@
+// ===== 共用樣式變數 =====
+// 色彩變數
+$primary-color: #667eea;
+$text-color: #495057;
+$border-color: #e4e7ed;
+$success-color: #67c23a;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+
+// 斷點變數
+$tablet: 768px;
+$mobile: 480px;
+
+// ===== 共用容器樣式 =====
+.common-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+
+  @media (max-width: $mobile) {
+    padding: 10px;
+  }
+}
+
+.home-container {
+  @extend .common-container;
+  text-align: center;
+  max-width: 800px;
+  background: rgba(248, 252, 255, 0.8);
+  border-radius: 20px;
+  padding: 50px;
+}
+
+// ===== 表單區塊樣式 =====
+.form-section {
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+  h2 {
+    color: $text-color;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    border-bottom: 3px solid $primary-color;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+// ===== 響應式表單 =====
+.responsive-form {
+  --label-width: 120px;
+
+  :deep(.el-form-item__label) {
+    width: var(--label-width) !important;
+  }
+
+  @media (max-width: $tablet) {
+    --label-width: 100px;
+  }
+
+  @media (max-width: $mobile) {
+    --label-width: 80px;
+    
+    :deep(.el-form-item__label) {
+      font-size: 14px;
+    }
+  }
+}
+
+// PersonalInfo 特殊設定
+.responsive-form--personal {
+  --label-width: 125px;
+}
+
+// ===== 共用標題和 Logo =====
+.page-title {
+  font-size: 3em;
+  color: #333;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  @media (max-width: $tablet) {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+}
+
+.logo {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+// ===== 共用按鈕樣式 =====
+.btn-github {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(51, 51, 51, 0.9);
+  padding: 10px 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+  &:hover {
+    color: #333 !important;
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+}
+
+.btn-report {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(200, 51, 51, 0.9);
+  padding: 10px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    color: #333 !important;
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn-personal-site {
+  transition: all 0.3s ease;
+  background: rgba(22, 46, 180, 0.9);
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    color: #333 !important;
+    transform: translateY(-2px);
+    background: #ff7affe6 !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 首頁特殊按鈕樣式
+.btn-personal-site--home {
+  color: $primary-color !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 5px;
+  background: transparent;
+  box-shadow: none;
+
+  &:hover {
+    color: #764ba2 !important;
+    transform: translateY(2px);
+    background: transparent !important;
+    box-shadow: none;
+  }
+}
+
+// ===== 關聯連結群組 =====
+.relate-link-group {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+
+  .el-button {
+    color: #fff !important;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      color: #333 !important;
+      transform: translateY(-2px);
+      background: #ff7affe6 !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // 手機螢幕適配
+  @media (max-width: $tablet) {
+    position: static;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+// ===== 特定組件樣式 =====
+// 性別選擇組件
+.gender-radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  .el-radio {
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 8px 16px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    transition: all 0.3s;
+    flex: 0 0 auto;
+
+    &:hover {
+      border-color: #c6e2ff;
+      background-color: #f5f7fa;
+    }
+
+    &.is-checked {
+      border-color: #409eff;
+      background-color: #ecf5ff;
+      color: #409eff;
+    }
+  }
+}
+
+// 附加資訊區塊
+.additional-settings {
+  margin-top: 30px;
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .additional-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(240, 248, 255, 0.5);
+    border-radius: 8px;
+    border: 1px solid #e1ecf4;
+
+    h4 {
+      color: $primary-color;
+      gap: 10px;
+      margin-bottom: 20px;
+
+      &::before {
+        content: "📋";
+      }
+    }
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .additional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .section-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+// 事件區塊
+.event-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(255, 248, 240, 0.7);
+  border-radius: 10px;
+  border: 1px solid #ffe4b5;
+
+  h3 {
+    color: $warning-color;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: "🎭";
+    }
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
+// ===== 工具類別 =====
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid $primary-color;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.section-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

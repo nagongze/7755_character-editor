@@ -168,36 +168,18 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
+
 .character-editor {
   padding: 20px;
 }
 
 .container {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
+  @extend .common-container;
 }
 
 h1 {
-  font-size: 3em;
-  color: #333;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.logo {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: middle;
+  @extend .page-title;
 }
 
 .character-form {
@@ -230,38 +212,31 @@ h1 {
 }
 
 .github-btn {
-  background: rgba(51, 51, 51, 0.9);
+  @extend .btn-github;
 }
 
 .report-btn {  
-  background: rgba(200, 51, 51, 0.9);  
+  @extend .btn-report;
 }
 
 .personal-site-btn {
-  transition: all 0.3s ease;
-  background: rgba(22, 46, 180, 0.9);
+  @extend .btn-personal-site;
 }
 
 .relate-link-group {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
+  @extend .relate-link-group;
 }
 
-.relate-link-group .el-button {
-  color: #fff !important;
-  font-size: 1.1em;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+/* 手機螢幕適配 */
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+    text-align: center;
+  }
 
-.relate-link-group .el-button:hover {
-  color: #333 !important;
-  transform: translateY(-2px);
-  background: #ff7affe6 !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  .success-message {
+    padding: 5px;    
+  }
 }
 
 </style>

@@ -99,47 +99,13 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
 .form-section {
-  margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  @extend .form-section;
 }
 
-.form-section h2 {
-  color: #495057;
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* 響應式 label-width */
 .responsive-form {
-  --label-width: 125px;
-}
-
-.responsive-form :deep(.el-form-item__label) {
-  width: var(--label-width) !important;
-}
-
-@media (max-width: 768px) {
-  .responsive-form {
-    --label-width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .responsive-form {
-    --label-width: 80px;
-  }
-  
-  .responsive-form :deep(.el-form-item__label) {
-    font-size: 14px;
-  }
+  @extend .responsive-form;
+  @extend .responsive-form--personal;
 }
 </style>

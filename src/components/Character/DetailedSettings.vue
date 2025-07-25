@@ -149,106 +149,17 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
 .form-section {
-  margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.form-section h2 {
-  color: #495057;
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  @extend .form-section;
 }
 
 .additional-settings {
-  margin-top: 30px;
+  @extend .additional-settings;
 }
 
-.additional-settings h3 {  
-  margin-bottom: 20px;
-  font-size: 1.4em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.additional-item {
-  margin-bottom: 20px;
-  padding: 15px;
-  background: rgba(240, 248, 255, 0.5);
-  border-radius: 8px;
-  border: 1px solid #e1ecf4;
-}
-
-.additional-item h4 {
-  color: #667eea;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.additional-item h4::before {
-  content: "📋";
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.section-header h3 {
-  margin: 0;
-}
-
-.additional-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.additional-header h4 {
-  margin: 0;
-}
-
-.section-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* 響應式 label-width */
 .responsive-form {
-  --label-width: 120px;
-}
-
-.responsive-form :deep(.el-form-item__label) {
-  width: var(--label-width) !important;
-}
-
-@media (max-width: 768px) {
-  .responsive-form {
-    --label-width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .responsive-form {
-    --label-width: 80px;
-  }
-  
-  .responsive-form :deep(.el-form-item__label) {
-    font-size: 14px;
-  }
+  @extend .responsive-form;
 }
 
 </style>

@@ -75,75 +75,16 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
 .form-section {
-  margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.form-section h2 {
-  color: #495057;
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  @extend .form-section;
 }
 
 .gender-radio-group {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  flex-wrap: wrap;
+  @extend .gender-radio-group;
 }
 
-.gender-radio-group .el-radio {
-  margin-right: 0;
-  margin-bottom: 0;
-  padding: 8px 16px;
-  border: 1px solid #e4e7ed;
-  border-radius: 6px;
-  transition: all 0.3s;
-  flex: 0 0 auto;
-}
-
-.gender-radio-group .el-radio:hover {
-  border-color: #c6e2ff;
-  background-color: #f5f7fa;
-}
-
-.gender-radio-group .el-radio.is-checked {
-  border-color: #409eff;
-  background-color: #ecf5ff;
-  color: #409eff;
-}
-
-/* 響應式 label-width */
 .responsive-form {
-  --label-width: 120px;
-}
-
-.responsive-form :deep(.el-form-item__label) {
-  width: var(--label-width) !important;
-}
-
-@media (max-width: 768px) {
-  .responsive-form {
-    --label-width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .responsive-form {
-    --label-width: 80px;
-  }
-  
-  .responsive-form :deep(.el-form-item__label) {
-    font-size: 14px;
-  }
+  @extend .responsive-form;
 }
 </style>

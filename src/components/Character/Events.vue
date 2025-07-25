@@ -129,102 +129,25 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
 .form-section {
-  margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.form-section h2 {
-  color: #495057;
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  @extend .form-section;
 }
 
 .event-item {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: rgba(255, 248, 240, 0.7);
-  border-radius: 10px;
-  border: 1px solid #ffe4b5;
-}
-
-.event-item h3 {
-  color: #e6a23c;
-  margin-bottom: 15px;
-  font-size: 1.3em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.event-item h3::before {
-  content: "🎭";
+  @extend .event-item;
 }
 
 .section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.section-header h2 {
-  margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.event-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.event-header h3 {
-  margin: 0;
+  @extend .section-header;
 }
 
 .section-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  @extend .section-footer;
 }
 
-/* 響應式 label-width */
 .responsive-form {
-  --label-width: 120px;
-}
-
-.responsive-form :deep(.el-form-item__label) {
-  width: var(--label-width) !important;
-}
-
-@media (max-width: 768px) {
-  .responsive-form {
-    --label-width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .responsive-form {
-    --label-width: 80px;
-  }
-  
-  .responsive-form :deep(.el-form-item__label) {
-    font-size: 14px;
-  }
+  @extend .responsive-form;
 }
 
 </style>

@@ -72,6 +72,7 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/common.scss';
 .home {
   min-height: 100vh;
   display: flex;
@@ -83,14 +84,7 @@ export default {
 }
 
 .container {
-  position: relative;  
-  text-align: center;
-  max-width: 800px;  
-  background: rgba(248, 252, 255, 0.8);
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
+  @extend .home-container;
 }
 
 .relate-link-group {
@@ -103,20 +97,7 @@ export default {
 }
 
 h1 {
-  font-size: 3em;
-  color: #333;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.logo {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: middle;
+  @extend .page-title;
 }
 
 .description {
@@ -159,48 +140,14 @@ h1 {
 }
 
 .personal-site-btn {
-  color: #667eea !important;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-bottom: 5px;
-}
-
-.personal-site-btn:hover {
-  color: #764ba2 !important;
-  transform: translateY(2px);
+  @extend .btn-personal-site--home;
 }
 
 .github-btn {
-  color: #fff !important;
-  font-size: 1.1em;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(51, 51, 51, 0.9);
-  padding: 10px 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.github-btn:hover {
-  color: #333 !important;
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);  
+  @extend .btn-github;
 }
 
 .report-btn {
-  color: #fff !important;
-  font-size: 1.1em;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(200, 51, 51, 0.9);
-  padding: 10px 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.report-btn:hover {
-  color: #333 !important;
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  @extend .btn-report;
 }
 </style>
