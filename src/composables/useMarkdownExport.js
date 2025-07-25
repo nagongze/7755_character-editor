@@ -107,7 +107,7 @@ export function useMarkdownExport() {
       
       character.detailedSettings.additional.forEach((item, index) => {
         if (item.title || item.content) {
-          markdown += `#### 附加資訊 ${index + 1}\n\n`
+          markdown += `### 附加資訊 ${index + 1}\n\n`
           
           if (item.title) {
             markdown += `**標題：**\n${formatAsBlockquote(item.title)}\n\n`
