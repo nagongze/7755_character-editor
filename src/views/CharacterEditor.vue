@@ -1,14 +1,34 @@
 <template>
   <div class="character-editor">
     <div class="container">
-      <h1>💖 7755遊戲角色檔案編輯器</h1>      
-
+      <div class="header">
+        <h1><img src="/logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
+        <div class="relate-link-group">
+          <el-button type="text" class="personal-site-btn" @click="openPersonalSite" circle>
+            <el-icon>
+              <AiChatIcon />
+            </el-icon>
+          </el-button>
+          <el-button type="text" class="github-btn" @click="openGithub" circle>
+            <i class="el-icon">
+              <GitHubIcon />
+            </i>
+          </el-button>
+          <el-button type="text" class="report-btn" @click="openReportPage" circle>
+            <i class="el-icon">
+              <Flag />
+            </i>
+          </el-button>
+        </div>
+      </div>
       <!-- 檔案控制 -->
-      <div class="success-message">        
+      <div class="success-message">
         <el-button type="primary" @click="$router.push('/')" plain>
-          <el-icon><House /></el-icon> 返回首頁
-        </el-button>        
-        <FileControls />    
+          <el-icon>
+            <House />
+          </el-icon> 返回首頁
+        </el-button>
+        <FileControls />
         <el-button type="info" @click="scrollToDetailedSettings">
           📋 快轉到附加資訊區
         </el-button>
@@ -32,16 +52,18 @@
       <!-- 載入動畫 -->
       <LoadingSpinner v-if="loading" />
 
-      <div class="success-message">        
-        <FileControls />       
+      <div class="success-message">
+        <FileControls />
         <el-button type="info" @click="scrollToTop" plain>
           🔝 回到頂端
         </el-button>
         <el-button type="primary" @click="$router.push('/')" plain>
-          <el-icon><House /></el-icon>返回首頁
+          <el-icon>
+            <House />
+          </el-icon>返回首頁
         </el-button>
-        
-            
+
+
       </div>
     </div>
   </div>
@@ -59,6 +81,8 @@ import FirstChat from '@/components/Character/FirstChat.vue'
 import DetailedSettings from '@/components/Character/DetailedSettings.vue'
 import Events from '@/components/Character/Events.vue'
 import { useGoogleAuth } from '@/composables/useGoogleAuth'
+import GitHubIcon from '@/components/Common/GitHubIcon.vue'
+import AiChatIcon from '@/components/Common/AiChatIcon.vue'
 
 export default {
   name: 'CharacterEditor',
@@ -70,7 +94,20 @@ export default {
     BasicSettings,
     FirstChat,
     DetailedSettings,
-    Events
+    Events,
+    GitHubIcon,
+    AiChatIcon
+  },
+  methods: {
+    openPersonalSite() {
+      window.open('https://wuguofish.github.io/lonely-chat-ai/', '_blank')
+    },
+    openGithub() {
+      window.open('https://github.com/wuguofish/character-editor', '_blank')
+    },
+    openReportPage() {
+      window.open('https://forms.gle/8svwv5X4YSUuxDqb7', '_blank')
+    }
   },
   setup() {
     const authStore = useAuthStore()
@@ -136,6 +173,7 @@ export default {
 }
 
 .container {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
@@ -146,11 +184,20 @@ export default {
 }
 
 h1 {
-  text-align: center;
+  font-size: 3em;
   color: #333;
-  margin-bottom: 30px;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
 }
 
 .character-form {
@@ -181,4 +228,40 @@ h1 {
 .success-message .el-button {
   margin-bottom: 20px;
 }
+
+.github-btn {
+  background: rgba(51, 51, 51, 0.9);
+}
+
+.report-btn {  
+  background: rgba(200, 51, 51, 0.9);  
+}
+
+.personal-site-btn {
+  transition: all 0.3s ease;
+  background: rgba(22, 46, 180, 0.9);
+}
+
+.relate-link-group {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.relate-link-group .el-button {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.relate-link-group .el-button:hover {
+  color: #333 !important;
+  transform: translateY(-2px);
+  background: #ff7affe6 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
 </style>

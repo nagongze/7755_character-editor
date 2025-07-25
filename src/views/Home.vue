@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
-      <h1>💖 7755遊戲角色檔案編輯器</h1>
+      <h1><img src="/logo.svg" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
       <p class="description">
         一個專為卿卿我我角色設定而設計的編輯工具
         <br />支援 Google Drive 雲端儲存
@@ -30,20 +30,42 @@
           </p>
         </div>
       </div>
-
       <el-button type="primary" size="large" @click="$router.push('/editor')" class="start-button">
         開始編輯角色 →
       </el-button>
+    </div>
+    <div class="relate-link-group">      
+        <el-button type="text" class="report-btn" @click="openReportPage">
+          <el-icon>
+            <Flag />
+          </el-icon> 建議與回報
+        </el-button>
+        <el-button type="text" class="github-btn" @click="openGithub">
+          <i class="el-icon">
+            <GitHubIcon />
+          </i> GitHub
+        </el-button>      
     </div>
   </div>
 </template>
 
 <script>
+import GitHubIcon from '@/components/Common/GitHubIcon.vue'
+
 export default {
   name: 'HomeView',
+  components: {
+    GitHubIcon
+  },
   methods: {
     openPersonalSite() {
       window.open('https://wuguofish.github.io/lonely-chat-ai/', '_blank')
+    },
+    openGithub() {
+      window.open('https://github.com/wuguofish/character-editor', '_blank')
+    },
+    openReportPage() {
+      window.open('https://forms.gle/8svwv5X4YSUuxDqb7', '_blank')
     }
   }
 }
@@ -53,12 +75,15 @@ export default {
 .home {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  gap: 20px;
 }
 
 .container {
+  position: relative;  
   text-align: center;
   max-width: 800px;  
   background: rgba(248, 252, 255, 0.8);
@@ -68,11 +93,30 @@ export default {
   backdrop-filter: blur(10px);
 }
 
+.relate-link-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+}
+
 h1 {
   font-size: 3em;
   color: #333;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
 }
 
 .description {
@@ -124,5 +168,39 @@ h1 {
 .personal-site-btn:hover {
   color: #764ba2 !important;
   transform: translateY(2px);
+}
+
+.github-btn {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(51, 51, 51, 0.9);
+  padding: 10px 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.github-btn:hover {
+  color: #333 !important;
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);  
+}
+
+.report-btn {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(200, 51, 51, 0.9);
+  padding: 10px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.report-btn:hover {
+  color: #333 !important;
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 </style>
