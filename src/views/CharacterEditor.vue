@@ -167,19 +167,18 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 
 .character-editor {
   padding: 20px;
 }
 
 .container {
-  @extend .common-container;
+  @include common-container;
 }
 
 h1 {
-  @extend .page-title;
+  @include page-title;
 }
 
 .character-form {
@@ -212,19 +211,15 @@ h1 {
 }
 
 .github-btn {
-  @extend .btn-github;
+  @include btn-github;
 }
 
 .report-btn {  
-  @extend .btn-report;
+  @include btn-report;
 }
 
 .personal-site-btn {
-  @extend .btn-personal-site;
-}
-
-.relate-link-group {
-  @extend .relate-link-group;
+  @include btn-personal-site;
 }
 
 /* 手機螢幕適配 */

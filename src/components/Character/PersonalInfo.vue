@@ -98,14 +98,16 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 .form-section {
-  @extend .form-section;
+  @include form-section;
 }
 
 .responsive-form {
   @extend .responsive-form;
-  @extend .responsive-form--personal;
+  
+  &.responsive-form--personal {
+    --label-width: 125px;
+  }
 }
 </style>

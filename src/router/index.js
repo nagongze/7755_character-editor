@@ -1,17 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import CharacterEditor from '../views/CharacterEditor.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/editor',
     name: 'CharacterEditor',
-    component: CharacterEditor
+    component: () => import('../views/CharacterEditor.vue')
   }
 ]
 

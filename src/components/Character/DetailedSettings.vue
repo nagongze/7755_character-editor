@@ -148,18 +148,9 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 .form-section {
-  @extend .form-section;
-}
-
-.additional-settings {
-  @extend .additional-settings;
-}
-
-.responsive-form {
-  @extend .responsive-form;
+  @include form-section;
 }
 
 </style>

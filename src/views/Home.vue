@@ -71,8 +71,7 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 .home {
   min-height: 100vh;
   display: flex;
@@ -84,7 +83,7 @@ export default {
 }
 
 .container {
-  @extend .home-container;
+  @include home-container;
 }
 
 .relate-link-group {
@@ -97,7 +96,7 @@ export default {
 }
 
 h1 {
-  @extend .page-title;
+  @include page-title;
 }
 
 .description {
@@ -140,14 +139,14 @@ h1 {
 }
 
 .personal-site-btn {
-  @extend .btn-personal-site--home;
+  @include btn-personal-site-home;
 }
 
 .github-btn {
-  @extend .btn-github;
+  @include btn-github;
 }
 
 .report-btn {
-  @extend .btn-report;
+  @include btn-report;
 }
 </style>

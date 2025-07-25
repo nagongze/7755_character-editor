@@ -128,26 +128,9 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 .form-section {
-  @extend .form-section;
-}
-
-.event-item {
-  @extend .event-item;
-}
-
-.section-header {
-  @extend .section-header;
-}
-
-.section-footer {
-  @extend .section-footer;
-}
-
-.responsive-form {
-  @extend .responsive-form;
+  @include form-section;
 }
 
 </style>

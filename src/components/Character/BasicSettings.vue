@@ -74,17 +74,8 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/common.scss';
+<style lang="scss" scoped>
 .form-section {
-  @extend .form-section;
-}
-
-.gender-radio-group {
-  @extend .gender-radio-group;
-}
-
-.responsive-form {
-  @extend .responsive-form;
+  @include form-section;
 }
 </style>
