@@ -28,18 +28,18 @@ export function useMarkdownExport() {
     markdown += `---\n\n`
 
     // 個人資訊
-    markdown += `## 👤 個人資訊\n\n`
+    markdown += `# 👤 個人資訊\n\n`
     
     if (character.personalInfo.name) {
-      markdown += `**角色姓名：**\n${formatAsBlockquote(character.personalInfo.name)}\n\n`
+      markdown += `**角色姓名：**${character.personalInfo.name}\n\n`
     }
     
     if (character.personalInfo.age) {
-      markdown += `**年齡：**\n${formatAsBlockquote(character.personalInfo.age)}\n\n`
+      markdown += `**年齡：**${character.personalInfo.age}\n\n`
     }
     
     if (character.personalInfo.profession) {
-      markdown += `**職業：**\n${formatAsBlockquote(character.personalInfo.profession)}\n\n`
+      markdown += `**職業：**${character.personalInfo.profession}\n\n`
     }
     
     if (character.personalInfo.quote) {
@@ -57,10 +57,10 @@ export function useMarkdownExport() {
     markdown += `---\n\n`
 
     // 基本設定
-    markdown += `## ⚙️ 基本設定\n\n`
+    markdown += `# ⚙️ 基本設定\n\n`
     
     if (character.basicSettings.gender) {
-      markdown += `**性別：**\n${formatAsBlockquote(character.basicSettings.gender)}\n\n`
+      markdown += `**性別：**${character.basicSettings.gender}\n\n`
     }
     
     if (character.basicSettings.basicInfo) {
@@ -78,7 +78,7 @@ export function useMarkdownExport() {
     markdown += `---\n\n`
 
     // 首次對話
-    markdown += `## 💬 首次對話\n\n`
+    markdown += `# 💬 首次對話\n\n`
     
     if (character.firstChat.scenario) {
       markdown += `**對話情境：**\n${formatAsBlockquote(character.firstChat.scenario)}\n\n`
@@ -91,7 +91,7 @@ export function useMarkdownExport() {
     markdown += `---\n\n`
 
     // 詳細設定
-    markdown += `## 🔍 角色詳細設定\n\n`
+    markdown += `# 🔍 角色詳細設定\n\n`
     
     if (character.detailedSettings.likes) {
       markdown += `**喜歡：**\n${formatAsBlockquote(character.detailedSettings.likes)}\n\n`
@@ -103,7 +103,7 @@ export function useMarkdownExport() {
 
     // 附加資訊
     if (character.detailedSettings.additional && character.detailedSettings.additional.length > 0) {
-      markdown += `### 📋 附加資訊\n\n`
+      markdown += `## 📋 附加資訊\n\n`
       
       character.detailedSettings.additional.forEach((item, index) => {
         if (item.title || item.content) {
@@ -124,11 +124,11 @@ export function useMarkdownExport() {
 
     // 重要事件
     if (character.events && character.events.length > 0) {
-      markdown += `## 🎬 重要事件\n\n`
+      markdown += `# 🎬 重要事件\n\n`
       
       character.events.forEach((event, index) => {
         if (event.title || event.timeAndPlace || event.content) {
-          markdown += `### 🎭 事件 ${index + 1}\n\n`
+          markdown += `## 🎭 事件 ${index + 1}\n\n`
           
           if (event.title) {
             markdown += `**事件標題：**\n${formatAsBlockquote(event.title)}\n\n`
