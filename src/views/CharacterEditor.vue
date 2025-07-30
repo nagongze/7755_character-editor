@@ -10,7 +10,7 @@
             </el-icon>
             <span class="btn-text">贊助</span>
           </el-button>
-          <el-button type="text" class="expand-btn personal-site-btn" @click="openPersonalSite" circle>
+          <el-button type="text" class="expand-btn personal-site-btn" @click="openDonatePage" circle>
             <el-icon class="btn-icon">
               <AiChatIcon />
             </el-icon>
@@ -119,6 +119,9 @@ export default {
     },
     openReportPage() {
       window.open('https://forms.gle/8svwv5X4YSUuxDqb7', '_blank')
+    },
+    openDonatePage() {
+      window.open('https://portaly.cc/atone0331/support', '_blank')
     }
   },
   setup() {
