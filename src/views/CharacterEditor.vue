@@ -231,6 +231,28 @@ h1 {
   padding: 0.25rem;  
   transition: all 0.3s ease;
   border-radius: 20px;
+  height: 32px !important;
+  min-height: 32px !important;
+}
+
+.relate-link-group .expand-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.relate-link-group .expand-btn > span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.relate-link-group .expand-btn .btn-icon,
+.relate-link-group .expand-btn .btn-text {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: normal !important;
 }
 
 .expand-btn .btn-text {
@@ -246,18 +268,16 @@ h1 {
 
 .expand-btn:hover {
   width: auto;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.75rem;  
 }
 
 .expand-btn:hover .btn-text {
   opacity: 1;
   width: auto;
-  margin-left: 0.25rem;
+  margin-left: 0.25rem;  
 }
 
-.expand-btn:hover .btn-icon {
-  transform: scale(1.1);
-}
+
 
 /* 個別按鈕的背景色 */
 .donate-btn {

@@ -1,3 +1,7 @@
+// ===== 字型定義 =====
+@import url('https://font.emtech.cc/css/jfOpenHuninn');
+@import url('https://font.emtech.cc/css/Iansui');
+
 // ===== 共用樣式變數 =====
 // 色彩變數
 $primary-color: #667eea;
@@ -242,6 +246,9 @@ $mobile: 480px;
   top: 20px;
   right: 20px;
   z-index: 10;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
 
   .el-button {
     color: #fff !important;
@@ -409,4 +416,22 @@ $mobile: 480px;
 	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
 	40% {transform: translateY(-5px);}
 	60% {transform: translateY(-2px);}
+}
+
+// ===== 全域字型設定 =====
+* {
+  font-family: 'jfOpenHuninn', 'Microsoft YaHei', '微軟正黑體', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: 'jfOpenHuninn', 'Microsoft YaHei', '微軟正黑體', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+// ===== textarea 專用字型設定 =====
+textarea,
+.el-textarea textarea,
+.el-textarea,
+.textarea-input,
+.el-textarea__inner {
+  font-family: 'Iansui'　!important;
 }

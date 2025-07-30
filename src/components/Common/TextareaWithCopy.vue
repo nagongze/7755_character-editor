@@ -119,7 +119,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .textarea-with-copy {
   position: relative;
   width: 100%;
@@ -171,6 +171,15 @@ export default {
 .word-count.over-limit {
   color: #f56c6c;
   background: rgba(245, 108, 108, 0.1);
+}
+
+// ===== textarea 專用字型設定 =====
+textarea,
+.el-textarea textarea,
+.el-textarea,
+.textarea-input,
+.el-textarea__inner {
+  font-family: 'Iansui' !important;
 }
 
 </style>

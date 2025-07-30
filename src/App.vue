@@ -18,7 +18,7 @@ export default {
 }
 
 body {
-  font-family: 'Microsoft JhengHei', Arial, sans-serif;
+  font-family: 'jfOpenHuninn', 'Microsoft JhengHei', Arial, sans-serif;
   background: linear-gradient(135deg, #ffffff 0%, #fa8fc5 100%);
   min-height: 100vh;
 }
