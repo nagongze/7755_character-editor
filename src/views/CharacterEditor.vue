@@ -228,11 +228,8 @@ h1 {
 /* 共用的展開按鈕樣式 */
 .expand-btn {
   border: #ccc solid 1px;
-  padding: 0.25rem;
-  overflow: hidden;
-  white-space: nowrap;
+  padding: 0.25rem;  
   transition: all 0.3s ease;
-  width: auto;
   border-radius: 20px;
 }
 
