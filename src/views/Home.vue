@@ -38,16 +38,18 @@
       <el-button type="text" class="donate-btn ani-pulse" @click="openDonatePage">
         ♡ 贊助阿童買果醬
       </el-button>
-      <el-button type="text" class="report-btn" @click="openReportPage">
-        <el-icon>
-          <Flag />
-        </el-icon> 建議與回報
-      </el-button>
-      <el-button type="text" class="github-btn" @click="openGithub">
-        <i class="el-icon">
-          <GitHubIcon />
-        </i> GitHub
-      </el-button>
+      <div class="mobile-row">
+        <el-button type="text" class="report-btn" @click="openReportPage">
+          <el-icon>
+            <Flag />
+          </el-icon> 建議與回報
+        </el-button>
+        <el-button type="text" class="github-btn" @click="openGithub">
+          <i class="el-icon">
+            <GitHubIcon />
+          </i> GitHub
+        </el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +104,42 @@ export default {
   justify-content: center;
   width: 100%;
   max-width: 800px;
-  margin-bottom: 50px;
+  margin: 0 auto 50px auto;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-self: center;
+      left: auto;
+        right: auto;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    gap: 15px;
+    
+    .donate-btn {
+      width: auto;
+      max-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .report-btn, .github-btn {
+      width: auto;
+      max-width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1em;
+    }
+    
+    .mobile-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+  }
 }
 
 h1 {
