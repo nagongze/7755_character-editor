@@ -1,6 +1,6 @@
-# 🎮 遊戲角色檔案編輯器
+# 🎮 7755遊戲角色檔案編輯器
 
-一個現代化的 Vue 3 應用程式，專為遊戲角色設定而設計，支援 Google Drive 雲端儲存功能。
+一個現代化的 Vue 3 應用程式，專為卿卿我我遊戲角色設定與備份而設計，支援 Google Drive 雲端儲存功能。
 
 ## ✨ 功能特色
 
@@ -18,6 +18,17 @@
 - **Element Plus** - UI 組件庫
 - **Sass** - CSS 預處理器
 - **Google Drive API** - 雲端儲存服務
+
+## 🎨 字型說明
+
+本應用程式使用了以下開源字型：
+
+- **[粉圓 2.1版](https://justfont.com/huninn/)** - 主要介面字型，提供圓潤可愛的視覺風格
+- **[芫荽 1.020版](https://github.com/ButTaiwan/iansui)** - 輔助字型，增強文字的可讀性與美感
+
+以確保在各種裝置上都能呈現一致的文字效果。
+字型檔案皆已轉檔為.woff2和.woff，以優化載入速度，此轉檔版本僅作為本網站UI呈現使用。
+若有字型使用需求的人，請自行至該字型官網瞭解相關詳細資訊，禁止直接拷貝或引用本專案內的檔案。
 
 ## 🚀 快速開始
 
@@ -45,6 +56,7 @@ cp .env.local.example .env.local
 
 # 編輯 .env.local，設定你的 Google API 憑證
 VUE_APP_GOOGLE_CLIENT_ID=your-client-id.googleusercontent.com
+HTTPS=true
 
 ```
 
@@ -60,16 +72,18 @@ npm run serve
 ```
 src/
 ├── assets/          # 靜態資源
+│   ├── fonts/       # 字型檔案（粉圓、芫荽）
+│   └── styles/      # 全域樣式檔案
 ├── components/      # Vue 組件
-│   ├── Common/      # 通用組件（載入動畫、狀態訊息等）
+│   ├── Common/      # 通用組件（載入動畫、狀態訊息、圖示等）
 │   ├── Character/   # 角色編輯相關組件
 │   └── GoogleDrive/ # Google Drive 功能組件
 ├── composables/     # 組合式 API
+├── router/          # 路由配置
 ├── services/        # API 服務封裝
 ├── stores/          # Pinia 狀態管理
 ├── utils/           # 工具函數與常數
-├── views/           # 頁面組件
-└── router/          # 路由配置
+└── views/           # 頁面組件
 ```
 
 ## 🔧 可用指令

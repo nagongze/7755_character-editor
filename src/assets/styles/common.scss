@@ -1,6 +1,25 @@
 // ===== 字型定義 =====
-@import url('https://font.emtech.cc/css/jfOpenHuninn');
-@import url('https://font.emtech.cc/css/Iansui');
+@font-face {
+  font-family: 'jfOpenHuninn';
+  src:
+    url('@/assets/fonts/jf-openhuninn.woff2') format('woff2'),
+    url('@/assets/fonts/jf-openhuninn.woff') format('woff'),
+    url('@/assets/fonts/jf-openhuninn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Iansui';
+  src:
+    url('@/assets/fonts/Iansui-Regular.woff2') format('woff2'),
+    url('@/assets/fonts/Iansui-Regular.woff') format('woff'),
+    url('@/assets/fonts/Iansui-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 // ===== 共用樣式變數 =====
 // 色彩變數
