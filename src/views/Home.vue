@@ -34,17 +34,20 @@
         開始編輯角色 →
       </el-button>
     </div>
-    <div class="relate-link-group">      
-        <el-button type="text" class="report-btn" @click="openReportPage">
-          <el-icon>
-            <Flag />
-          </el-icon> 建議與回報
-        </el-button>
-        <el-button type="text" class="github-btn" @click="openGithub">
-          <i class="el-icon">
-            <GitHubIcon />
-          </i> GitHub
-        </el-button>      
+    <div class="relate-link-group">
+      <el-button type="text" class="donate-btn ani-pulse" @click="openDonatePage">
+        ♡ 贊助阿童買果醬
+      </el-button>
+      <el-button type="text" class="report-btn" @click="openReportPage">
+        <el-icon>
+          <Flag />
+        </el-icon> 建議與回報
+      </el-button>
+      <el-button type="text" class="github-btn" @click="openGithub">
+        <i class="el-icon">
+          <GitHubIcon />
+        </i> GitHub
+      </el-button>
     </div>
   </div>
 </template>
@@ -68,6 +71,9 @@ export default {
     },
     openReportPage() {
       window.open('https://forms.gle/8svwv5X4YSUuxDqb7', '_blank')
+    },
+    openDonatePage() {
+      window.open('https://portaly.cc/atone0331/support', '_blank')
     }
   }
 }
@@ -90,11 +96,13 @@ export default {
 
 .relate-link-group {
   position: relative;
+  top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 800px;
+  margin-bottom: 50px;
 }
 
 h1 {
@@ -150,5 +158,9 @@ h1 {
 
 .report-btn {
   @include btn-report;
+}
+
+.donate-btn {  
+  @include btn-donate;
 }
 </style>

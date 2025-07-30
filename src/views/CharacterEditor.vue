@@ -4,20 +4,29 @@
       <div class="header">
         <h1><img :src="require('@/../public/logo.svg')" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
         <div class="relate-link-group">
-          <el-button type="text" class="personal-site-btn" @click="openPersonalSite" circle>
-            <el-icon>
+          <el-button type="text" class="expand-btn donate-btn ani-bounce" @click="openPersonalSite" circle>
+            <el-icon class="btn-icon">              
+              <span>♡</span>
+            </el-icon>
+            <span class="btn-text">贊助</span>
+          </el-button>
+          <el-button type="text" class="expand-btn personal-site-btn" @click="openPersonalSite" circle>
+            <el-icon class="btn-icon">
               <AiChatIcon />
             </el-icon>
+            <span class="btn-text">關於作者</span>
           </el-button>
-          <el-button type="text" class="github-btn" @click="openGithub" circle>
-            <i class="el-icon">
+          <el-button type="text" class="expand-btn github-btn" @click="openGithub" circle>
+            <el-icon class="btn-icon">
               <GitHubIcon />
-            </i>
+            </el-icon>
+            <span class="btn-text">GitHub</span>
           </el-button>
-          <el-button type="text" class="report-btn" @click="openReportPage" circle>
-            <el-icon>
+          <el-button type="text" class="expand-btn report-btn" @click="openReportPage" circle>
+            <el-icon class="btn-icon">
               <Flag />
             </el-icon>
+            <span class="btn-text">回報</span>
           </el-button>
         </div>
       </div>
@@ -211,6 +220,52 @@ h1 {
 
 .success-message .el-button {
   margin-bottom: 20px;
+}
+
+/* 共用的展開按鈕樣式 */
+.expand-btn {
+  border: #ccc solid 1px;
+  padding: 0.25rem;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  width: auto;
+  border-radius: 20px;
+}
+
+.expand-btn .btn-text {
+  opacity: 0;
+  width: 0;
+  transition: all 0.3s ease;
+  margin-left: 0;
+}
+
+.expand-btn .btn-icon {
+  transition: all 0.3s ease;
+}
+
+.expand-btn:hover {
+  width: auto;
+  padding: 0.25rem 0.75rem;
+}
+
+.expand-btn:hover .btn-text {
+  opacity: 1;
+  width: auto;
+  margin-left: 0.25rem;
+}
+
+.expand-btn:hover .btn-icon {
+  transform: scale(1.1);
+}
+
+/* 個別按鈕的背景色 */
+.donate-btn {
+  background: #f34fa1ff;
+  i {
+    font-style: normal;
+    font-weight: 500;
+  }
 }
 
 .github-btn {
