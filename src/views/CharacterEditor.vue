@@ -4,13 +4,13 @@
       <div class="header">
         <h1><img :src="require('@/../public/logo.svg')" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
         <div class="relate-link-group">
-          <el-button type="text" class="expand-btn donate-btn ani-bounce" @click="openPersonalSite" circle>
+          <el-button type="text" class="expand-btn donate-btn ani-bounce" @click="openDonatePage" circle>
             <el-icon class="btn-icon">              
               <span>♡</span>
             </el-icon>
             <span class="btn-text">贊助</span>
           </el-button>
-          <el-button type="text" class="expand-btn personal-site-btn" @click="openDonatePage" circle>
+          <el-button type="text" class="expand-btn personal-site-btn" @click="openPersonalSite" circle>
             <el-icon class="btn-icon">
               <AiChatIcon />
             </el-icon>
