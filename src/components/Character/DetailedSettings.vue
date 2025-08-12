@@ -65,7 +65,7 @@
 <script>
 import { computed } from 'vue'
 import { useCharacterStore } from '@/stores/character'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Plus, Delete } from '@element-plus/icons-vue'
 import TextareaWithCopy from '@/components/Common/TextareaWithCopy.vue'
 
@@ -100,14 +100,33 @@ export default {
     }
 
     const removeAdditionalInfo = (index) => {
-      if (character.value.detailedSettings.additional.length <= 1) {
-        ElMessage.warning('至少需要保留一筆附加資訊')
-        return
-      }
-      
-      character.value.detailedSettings.additional.splice(index, 1)
-      updateCharacter()
-      ElMessage.success('已刪除附加資訊')
+
+      ElMessageBox.confirm(
+        '附加資訊標題：' + character.value.detailedSettings.additional[index].title,
+        '是否確認刪除附加資訊？',
+        {
+          confirmButtonText: '刪除',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(() => {
+
+        if (character.value.detailedSettings.additional.length <= 1) {
+          ElMessage.warning('至少需要保留一筆附加資訊')
+          return
+        }
+
+        character.value.detailedSettings.additional.splice(index, 1)
+        updateCharacter()
+        ElMessage.success('已刪除附加資訊')
+
+      })
+      .catch(() => {
+        ElMessage({
+          type: 'info',
+          message: '取消刪除',
+        })
+      })      
     }
 
     return {

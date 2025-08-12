@@ -30,6 +30,17 @@
           </p>
         </div>
       </div>
+      <div class="notice">
+        <h4>⚠️ 注意事項：</h4>
+        <ol style="padding-left: 2.2rem; padding-right: 1.2rem;">
+          <li> 佛系維護。</li>
+          <li>角色檔案放在使用者的雲端或是電腦，<b>本工具不涉及任何資料儲存</b>，僅做格式轉換。</li>
+          <li>因為雲端存檔功能涉及Google雲端的操作，若對權限有疑慮，可選擇使用本機檔案的匯出匯入功能。</li>
+          <li>本工具為純粹的網頁，不涉及伺服器資料交換，即使讀取本機檔案也只會暫存在使用者瀏覽器上，請勿找開發者討要資料。</li>
+          <li>支援匯出Markdown，給想把角色搬去GPT或其他平台的人，可以有一個草稿使用。（但Markdown格式無法匯回！）</li>
+          <li>想知道怎麼寫的，可以去github頁面看，原始碼全部在那邊，可以自己fork一個回去改。</li>
+        </ol>
+      </div>
       <el-button type="primary" size="large" @click="$router.push('/editor')" class="start-button">
         開始編輯角色 →
       </el-button>
@@ -157,6 +168,11 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  margin-bottom: 40px;
+}
+
+.notice {
+  text-align: left; 
   margin-bottom: 40px;
 }
 

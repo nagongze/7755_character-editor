@@ -47,7 +47,7 @@
 <script>
 import { computed } from 'vue'
 import { useCharacterStore } from '@/stores/character'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Plus, Delete } from '@element-plus/icons-vue'
 import TextareaWithCopy from '@/components/Common/TextareaWithCopy.vue'
 
@@ -83,14 +83,32 @@ export default {
     }
 
     const removeEvent = (index) => {
-      if (character.value.events.length <= 1) {
-        ElMessage.warning('至少需要保留一筆事件')
-        return
-      }
-      
-      character.value.events.splice(index, 1)
-      updateCharacter()
-      ElMessage.success('已刪除事件')
+
+      ElMessageBox.confirm(        
+        '事件標題：' + character.value.events[index].title,
+        '是否確認刪除事件？',
+        {
+          confirmButtonText: '刪除',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(() => {
+        
+        if (character.value.events.length <= 1) {
+          ElMessage.warning('至少需要保留一筆事件')
+          return
+        }
+        character.value.events.splice(index, 1)
+        updateCharacter()
+        ElMessage.success('已刪除事件')
+        
+        })
+      .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: '取消刪除',
+          })
+        })      
     }
 
     return {

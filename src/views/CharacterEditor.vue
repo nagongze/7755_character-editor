@@ -5,7 +5,7 @@
         <h1><img :src="require('@/../public/logo.svg')" alt="Logo" class="logo" /> 7755遊戲角色檔案編輯器</h1>
         <div class="relate-link-group">
           <el-button type="text" class="expand-btn donate-btn ani-bounce" @click="openDonatePage" circle>
-            <el-icon class="btn-icon">              
+            <el-icon class="btn-icon">
               <span>♡</span>
             </el-icon>
             <span class="btn-text">贊助</span>
@@ -37,6 +37,12 @@
             <House />
           </el-icon> 返回首頁
         </el-button>
+        <div class="notice">
+          <h4>⚠️ 注意事項 ⚠️</h4>
+          <p>本工具<b>不涉及任何資料儲存</b>，僅做格式轉換。<br />
+            對Google雲端操作功能有疑慮者，請選擇使用本機檔案匯出匯入功能。 <br />
+            匯出為Markdown格式的檔案，無法匯回本工具。</p>
+        </div>
         <FileControls />
         <el-button type="info" @click="scrollToDetailedSettings">
           📋 快轉到附加資訊區
@@ -198,6 +204,10 @@ h1 {
 
 .character-form {
   margin-top: 30px;
+}
+
+.notice {
+  margin-bottom: 30px;
 }
 
 .success-message {
