@@ -5,7 +5,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '',
+  publicPath: process.env.NODE_ENV === 'production' ? '/character-editor/' : '/',
   devServer: {
     https: true,
     port: 8080,
