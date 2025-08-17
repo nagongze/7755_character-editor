@@ -6,13 +6,13 @@
         <el-col :xs=24 :span="12">
           <el-form-item label="喜歡">
             <TextareaWithCopy v-model="character.detailedSettings.likes" placeholder="角色喜歡的事物" :rows="3"
-              :max-length="50" @input="updateCharacter" />
+              :max-length="70" @input="updateCharacter" />
           </el-form-item>
         </el-col>
         <el-col :xs=24 :span="12">
           <el-form-item label="不喜歡">
             <TextareaWithCopy v-model="character.detailedSettings.dislikes" placeholder="角色討厭的事物" :rows="3"
-              :max-length="50" @input="updateCharacter" />
+              :max-length="70" @input="updateCharacter" />
           </el-form-item>
         </el-col>
       </el-row>
